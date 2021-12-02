@@ -17,3 +17,19 @@
     <button type="button" class="delete-post-btn">Delete post</button>
   </form>
 </article>
+
+{{> comments post.comments}}
+
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+  </div>
+</form>
+
+<script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script>
+<script src="/javascript/comment.js"></script>
