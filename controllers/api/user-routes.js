@@ -27,12 +27,12 @@ router.get('/:id', (req, res) => {
     include: [
     {
       model: Post,
-      attributes: ['id', 'title', 'post_url', 'created_at']
+      attributes: ['id', 'username']
     },
     // include all of user's comments
     {
       model: Comment,
-      attributes: ['id', 'comment_text', 'created_at'],
+      attributes: ['id', 'comment_text'],
       include: {
         model: Post,
         attributes: ['title']
@@ -162,7 +162,7 @@ router.post('/logout', (req, res) => {
       res.status(204).end();
     });
   }
-  // if !session , not found err
+  // if !session, not found err
   else {
     res.status(404).end();
   }

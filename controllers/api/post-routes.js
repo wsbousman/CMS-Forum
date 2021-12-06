@@ -5,18 +5,16 @@ const { Post, User, Comment } = require('../../models');
 // get all posts
 router.get('/', (req, res) => {
   Post.findAll({
-    order: [['created_at', 'DESC']],
+    // order: [['created_at', 'DESC']],
     attributes: [
       'id',
-      'post_url',
       'title',
-      'created_at',
     ],
     // include all user comments
     include: [
     {
      model: Comment,
-     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+     attributes: ['id', 'comment_text', 'post_id', 'user_id'],
      // nested include comment's user
      include: {
        model: User,
@@ -46,15 +44,13 @@ router.get('/:id', (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
       'title',
-      'created_at',
     ],
     // include post's comments
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id'],
         // nested include comment's user
         include: {
           model: User,
@@ -87,7 +83,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   Post.create({
     title: req.body.title,
-    post_url: req.body.post_url,
+    postContent: req.body.postContent,
     user_id: req.session.user_id
   })
     .then(dbPostData => res.json(dbPostData))

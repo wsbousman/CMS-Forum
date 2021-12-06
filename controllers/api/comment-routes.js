@@ -8,9 +8,8 @@ router.get('/', (req, res) => {
           'id',
           'user_id',
           'comment_text',
-          'created_at',
         ],
-        order: [['created_at', 'DESC']],
+        // order: [['created_at', 'DESC']],
       })
         .then(dbPostData => res.json(dbPostData))
         // internal server error
